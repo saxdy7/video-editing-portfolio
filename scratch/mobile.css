@@ -27,8 +27,11 @@
 .ba-before{ width:100% !important; clip-path:inset(0 calc(100% - var(--ba-pos, 50%)) 0 0); border-right:0 !important; box-shadow:none !important; }
 .ba-before img{ width:100% !important; max-width:100% !important; }
 .ba-handle{ background:var(--bone); margin-left:-1.5px; box-shadow:0 0 18px rgba(0,0,0,.6); }
+.ba-handle-btn{ flex:none; transform:none; letter-spacing:.1em; }
+/* labels sit at the top: the scene's foreground rocks drift over the bottom corners */
+.ba-tag{ bottom:auto !important; top:14px; }
 @media (max-width:560px){
-  .ba-tag{ font-size:8px; letter-spacing:.12em; padding:5px 9px; bottom:10px; }
+  .ba-tag{ font-size:8px; letter-spacing:.12em; padding:5px 9px; top:10px; }
   .ba-tag-before{ left:10px; } .ba-tag-after{ right:10px; }
   .ba-handle-btn{ width:34px; height:34px; font-size:11px; }
 }

@@ -202,7 +202,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position: relative; margin: 50px 0 70px;
 }
 .ba-container {
-  position: relative; width: 100%; max-width: 960px; aspect-ratio: 16/9;
+  position: relative; width: min(100%, 540px, calc(80vh * .75)); aspect-ratio: 3/4;
   margin: 0 auto; border-radius: 16px; overflow: hidden;
   border: 1px solid rgba(223,231,224,.18);
   box-shadow: 0 30px 80px -20px rgba(0,0,0,.9);
@@ -214,9 +214,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ba-layer img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
-.ba-after img {
-  filter: contrast(115%) saturate(125%) brightness(95%);
-}
+.ba-after img { filter: none; }
 .ba-before {
   width: var(--ba-pos, 50%); overflow: hidden; z-index: 2;
   border-right: 2px solid var(--bone);
@@ -224,7 +222,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .ba-before img {
   width: 960px; max-width: none; height: 100%;
-  filter: contrast(65%) saturate(30%) brightness(115%);
+  filter: none;
 }
 .ba-handle {
   position: absolute; top: 0; bottom: 0; left: var(--ba-pos, 50%);
@@ -1456,8 +1454,11 @@ html.lenis, html.lenis body{ height:auto; }
 .ba-before{ width:100% !important; clip-path:inset(0 calc(100% - var(--ba-pos, 50%)) 0 0); border-right:0 !important; box-shadow:none !important; }
 .ba-before img{ width:100% !important; max-width:100% !important; }
 .ba-handle{ background:var(--bone); margin-left:-1.5px; box-shadow:0 0 18px rgba(0,0,0,.6); }
+.ba-handle-btn{ flex:none; transform:none; letter-spacing:.1em; }
+/* labels sit at the top: the scene's foreground rocks drift over the bottom corners */
+.ba-tag{ bottom:auto !important; top:14px; }
 @media (max-width:560px){
-  .ba-tag{ font-size:8px; letter-spacing:.12em; padding:5px 9px; bottom:10px; }
+  .ba-tag{ font-size:8px; letter-spacing:.12em; padding:5px 9px; top:10px; }
   .ba-tag-before{ left:10px; } .ba-tag-after{ right:10px; }
   .ba-handle-btn{ width:34px; height:34px; font-size:11px; }
 }
@@ -2248,23 +2249,23 @@ html.lenis, html.lenis body{ height:auto; }
   <div class="ba-section" data-rv="up">
     <div style="text-align:center;margin-bottom:18px;">
       <span style="font-size:10px;font-family:monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--vermilion);">Interactive Visual Demonstration</span>
-      <h3 style="font-size:20px;font-weight:400;color:var(--bone);margin:4px 0 6px;">Raw Flat LOG Footage vs. Mastered Cinematic Grade</h3>
-      <p style="font-size:12px;color:#8f9b95;margin:0;">Drag the center slider left and right to inspect color grading depth, shadow recovery, and contrast.</p>
+      <h3 style="font-size:20px;font-weight:400;color:var(--bone);margin:4px 0 6px;">Raw Shot vs. Final Edit</h3>
+      <p style="font-size:12px;color:#8f9b95;margin:0;">Drag the slider to compare the untouched photo with the finished edit: colour grade, film grain, dispersion effect and typography.</p>
     </div>
 
     <div class="ba-container" id="ba-slider-container">
       <div class="ba-layer ba-after">
-        <img src="/images/work/event-cultural-fest.jpg" alt="Graded cut — Cultural Fest film">
+        <img src="/images/before-after-edit.jpg" alt="Final edit — graded, grain, dispersion effect and quote typography" width="960" height="1280">
       </div>
       <div class="ba-layer ba-before" id="ba-before-layer">
-        <img src="/images/work/event-cultural-fest.jpg" alt="Flat ungraded frame — Cultural Fest film">
+        <img src="/images/before-after-raw.jpg" alt="Raw, unedited photo" width="960" height="1280">
       </div>
       <div class="ba-handle" id="ba-handle">
         <div class="ba-handle-btn">⟨ ⟩</div>
       </div>
-      <span class="ba-tag ba-tag-before">Raw Flat LOG</span>
-      <span class="ba-tag ba-tag-after">Graded Rec.709 Cinema</span>
-      <input type="range" min="0" max="100" value="50" class="ba-range-input" id="ba-range" aria-label="Compare Raw vs Graded">
+      <span class="ba-tag ba-tag-before">Raw Shot</span>
+      <span class="ba-tag ba-tag-after">Final Edit</span>
+      <input type="range" min="0" max="100" value="50" class="ba-range-input" id="ba-range" aria-label="Compare raw shot and final edit">
     </div>
   </div>
 
