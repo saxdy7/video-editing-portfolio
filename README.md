@@ -2,7 +2,7 @@
 
 3D (Three.js) portfolio site for my video editing and motion design work, built with Next.js.
 
-- **Work:** 14 edits — 9 GradGlobe study-abroad reels (performance + organic), PulseCrafts explainer, Surviving AI captions, Claude SaaS promo, SaaS intro, Remotion promo.
+- **Work:** 14 featured edits — 9 of the 30+ GradGlobe study-abroad reels I've edited (performance + organic), PulseCrafts explainer, Surviving AI captions, Claude SaaS promo, SaaS intro, Remotion promo.
 - **Full-quality masters:** [Google Drive folder](https://drive.google.com/drive/folders/1K5kJW2a3URDs3Zn6GdUCi6xHPlZ46O8O)
 - **Contact:** mamidalasandeep5@gmail.com · +91 94937 63769 · [LinkedIn](https://linkedin.com/in/sandeepmamidala)
 

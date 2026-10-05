@@ -155,7 +155,7 @@ rep(`<div><b>50M+</b><span>Views Generated</span></div>
     <div><b>98%</b><span>Client Retention</span></div>
     <div><b>4K</b><span>Master Delivery</span></div>`,
     `<div><b>${PROJECTS.length}</b><span>Featured Edits</span></div>
-    <div><b>9</b><span>Reels for GradGlobe</span></div>
+    <div><b>30+</b><span>Reels for GradGlobe</span></div>
     <div><b>24–48h</b><span>First Cut</span></div>
     <div><b>4K</b><span>Master Delivery</span></div>`);
 rep('Whether crafting high-velocity Instagram Reels that breach millions of views, or cutting',
@@ -167,7 +167,7 @@ rep('<div class="about-name">Sandeep M</div>', '<div class="about-name">Sandeep 
 rep('<div class="about-title-tag">Cinematic Video Editor & Creator</div>', '<div class="about-title-tag">Video Editor &amp; Motion Designer · India</div>');
 rep(`<p>I&apos;m <strong>Sandeep M</strong>, a cinematic video editor dedicated to helping creators, SaaS founders, and forward-thinking brands dominate their niche through visual storytelling.</p>`,
     `<p>I&apos;m <strong>Sandeep Mamidala</strong>, a freelance video editor and motion designer from Telangana, studying at Lovely Professional University in Punjab and working remotely with clients worldwide.</p>
-      <p>Recently I&apos;ve delivered a full series of performance and organic reels for the study-abroad brand <strong>GradGlobe</strong>, explainers for Fiverr clients, and SaaS promos built in After Effects and Remotion.</p>`);
+      <p>Recently IRecently I&apos;ve delivered a full series of performance and organic reels for the study-abroad brand <strong>GradGlobe</strong>apos;ve delivered <strong>30+ performance and organic reels</strong> for the study-abroad brand <strong>GradGlobe</strong>, explainers for Fiverr clients, and SaaS promos built in After Effects and Remotion.</p>`);
 rep('My editorial approach merges <strong>rhythmic micro-pacing, multi-layered sound design, and Hollywood color grading</strong>',
     'My approach merges <strong>tight pacing, layered sound design, motion graphics and caption design</strong>');
 
