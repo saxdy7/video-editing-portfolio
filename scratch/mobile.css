@@ -1,0 +1,49 @@
+/* ---- header: brand + burger only; "Start Project" lives in the menu and the hero ---- */
+@media (max-width:560px){
+  .nav{ gap:12px; }
+  .nav-cta{ display:none !important; }
+  .nav-burger{ margin-left:auto; }
+  .brand-tx b{ font-size:11px; letter-spacing:.16em; }
+  .brand-tx i{ font-size:8px; letter-spacing:.18em; }
+}
+/* ---- hero ---- */
+@media (max-width:560px){
+  .hero-side, body[data-layout-hero="b"] .hero-side{ display:none; }
+  .hero-top .eyebrow{ font-size:9px; letter-spacing:.2em; }
+  .hero-sub{ max-width:none; }
+  /* the WebGL wordmark sits behind the CTAs here, so they get a solid enough base to read */
+
+  .cta-play-reel{ width:100%; justify-content:center; }
+  .hero-top a[href="#pathways"]{ width:100%; text-align:center; }
+  .hero-top > div[style*="margin-top:24px"]{ gap:10px !important; }
+  .social-row{ gap:8px; }
+  .social-btn{ padding:8px 12px 8px 10px; font-size:9px; letter-spacing:.14em; }
+}
+@media (max-width:560px){
+  .social-row{ display:grid; grid-template-columns:1fr 1fr; }
+  .social-btn{ justify-content:center; }
+}
+/* ---- before / after: clip instead of a fixed-width image, so both halves line up at any width ---- */
+.ba-before{ width:100% !important; clip-path:inset(0 calc(100% - var(--ba-pos, 50%)) 0 0); border-right:0 !important; box-shadow:none !important; }
+.ba-before img{ width:100% !important; max-width:100% !important; }
+.ba-handle{ background:var(--bone); margin-left:-1.5px; box-shadow:0 0 18px rgba(0,0,0,.6); }
+@media (max-width:560px){
+  .ba-tag{ font-size:8px; letter-spacing:.12em; padding:5px 9px; bottom:10px; }
+  .ba-tag-before{ left:10px; } .ba-tag-after{ right:10px; }
+  .ba-handle-btn{ width:34px; height:34px; font-size:11px; }
+}
+/* ---- comfortable tap targets for contact + footer links ---- */
+@media (max-width:820px){
+  .contact-info-card a.contact-info-val{ display:block; padding:9px 0; margin-top:0 !important; }
+  .foot ul li a{ display:inline-block; padding:11px 0; }
+  .foot ul li{ margin:0 !important; }
+}
+/* ---- tool cards: logo beside the copy on phones, so five cards don't take a full screen each ---- */
+@media (max-width:560px){
+  .software-grid{ gap:12px; }
+  .soft-card{ flex-direction:row; align-items:flex-start; gap:14px; padding:18px 16px; }
+}
+/* the WebGL wordmark sits behind the hero CTAs below desktop widths, so they get a solid enough base to read */
+@media (max-width:1080px){
+  .hero-top a[href="#pathways"], .hero-top .social-btn{ background:rgba(5,7,10,.8) !important; }
+}
