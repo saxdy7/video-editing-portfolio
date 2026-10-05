@@ -1422,6 +1422,10 @@ html.lenis, html.lenis body{ height:auto; }
 .contact-info-val{ overflow-wrap:anywhere; }
 .form-select{ color-scheme:dark; }
 .form-select option{ background:#0b1014; color:#dfe7e0; }
+
+/* hero peek tile: live video preview inside the frame */
+.peek-fr{ position:relative; overflow:hidden; }
+.peek-vid{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -1512,10 +1516,10 @@ html.lenis, html.lenis body{ height:auto; }
     </div>
   </div>
 
-  <a class="peek" href="javascript:void(0)" onclick="openVideoModal('/videos/hero-reel.mp4', 'Cinematic Showreel — Sandeep Mamidala')" data-view="3" data-rv="fade" data-cursor aria-label="Preview: Cinematic Showreel">
-    <span class="peek-fr" data-frame></span>
+  <a class="peek" href="javascript:void(0)" onclick="openVideoModal('/videos/work/saas-intro.mp4', 'SaaS Intro Showcase')" data-view="3" data-rv="fade" data-cursor aria-label="Play: SaaS Intro Showcase">
+    <span class="peek-fr" data-frame><video class="peek-vid" src="/videos/work/saas-intro.mp4" poster="/images/work/saas-intro.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video></span>
     <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b class="jp">映像</b><i>Showreel — Click to play</i></span>
+    <span class="peek-cap"><b class="jp">映像</b><i>SaaS Intro — Click to play</i></span>
   </a>
 
   <div class="word-fb" aria-hidden="true">SANDEEP</div>
@@ -6120,6 +6124,7 @@ window.openVideoModal = function(src, title) {
     video.onloadedmetadata = fit; fit();
     modal.classList.add('open');
     if (window.__lenis) window.__lenis.stop();
+    var pv = document.querySelector('.peek-vid'); if (pv) pv.pause();
     video.play().catch(function() {});
   }
 };
@@ -6131,6 +6136,7 @@ window.closeVideoModal = function() {
     video.pause();
     modal.classList.remove('open');
     if (window.__lenis) window.__lenis.start();
+    var pv = document.querySelector('.peek-vid'); if (pv) pv.play().catch(function () {});
   }
 };
 
@@ -6257,6 +6263,18 @@ window.handleContactSubmit = function(e) {
     sel.parentNode.insertBefore(wrap, sel); wrap.appendChild(sel); wrap.appendChild(btn); wrap.appendChild(list);
     sync();
   });
+})();
+</script>
+<script>
+/* keep the hero tile looping: browsers suspend muted media in hidden tabs */
+(function () {
+  var v = document.querySelector(".peek-vid"); if (!v) return;
+  function resume() {
+    var open = document.getElementById("video-modal");
+    if (document.visibilityState === "visible" && !(open && open.classList.contains("open"))) v.play().catch(function () {});
+  }
+  document.addEventListener("visibilitychange", resume);
+  v.addEventListener("pause", function () { setTimeout(resume, 400); });
 })();
 </script>
 </body>
