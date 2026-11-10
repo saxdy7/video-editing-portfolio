@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sandeep Mamidala — Video Editor & Motion Designer</title>
-<meta name="description" content="Cinematic video editor specializing in commercial films, high-retention viral reels, SaaS motion explainers, and narrative visual storytelling.">
+<meta name="description" content="Portfolio of Sandeep Mamidala (S7 Films): performance and organic reels, event films, political campaign reels, spec ads and SaaS motion design.">
+<!-- og:start -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S7 Films — Sandeep Mamidala">
+<meta property="og:title" content="Sandeep Mamidala — Video Editor & Motion Designer">
+<meta property="og:description" content="Reels, event films, political campaign reels, spec ads and SaaS motion design. Tap any project to watch.">
+<meta property="og:url" content="https://sandeep-video-portfolio.vercel.app/">
+<meta property="og:image" content="https://sandeep-video-portfolio.vercel.app/images/work/event-cultural-fest.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070a'/%3E%3Ccircle cx='16' cy='17' r='8' fill='%23e0231c'/%3E%3Crect x='4' y='8' width='24' height='2.6' fill='%23dfe7e0'/%3E%3Crect x='7' y='13' width='18' height='2' fill='%23dfe7e0'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/fonts.css">
 <style>
@@ -1294,6 +1303,23 @@ h1:not(.jp), h2:not(.jp), h3:not(.jp), .display:not(.jp){ font-family:'Onest',sy
 .s7-grain{ position:fixed; inset:0; pointer-events:none; z-index:9991; opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .s7-vignette{ position:fixed; inset:0; pointer-events:none; z-index:9990; background:radial-gradient(circle at 50% 50%, transparent 60%, rgba(2,4,7,.6) 100%); }
+
+/* share links */
+.vm-actions{ display:flex; align-items:center; gap:10px; flex:none; }
+.vm-header{ gap:12px; }
+.vm-title{ min-width:0; }
+.vm-share{ display:inline-flex; align-items:center; gap:7px; height:34px; padding:0 14px; border-radius:999px; white-space:nowrap; flex:none;
+  border:1px solid rgba(223,231,224,.2); background:rgba(223,231,224,.05); color:var(--bone); cursor:pointer;
+  font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  transition:background-color .2s ease, border-color .2s ease, transform .16s var(--ease-ui); }
+.vm-share:active{ transform:scale(.96); }
+.vm-share.copied{ border-color:rgba(74,222,128,.6); color:#4ade80; }
+@media (hover:hover) and (pointer:fine){ .vm-share:hover{ background:rgba(223,231,224,.14); border-color:rgba(223,231,224,.5); } }
+.vm-video-wrap{ position:relative; }
+.vm-unmute{ position:absolute; z-index:2; top:14px; left:50%; transform:translateX(-50%); padding:9px 16px; border-radius:999px;
+  border:0; background:var(--vermilion); color:#fff; font-size:11px; letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
+  box-shadow:0 0 24px rgba(224,35,28,.5); }
+@media (max-width:560px){ .vm-share span{ display:none; } .vm-share{ width:34px; padding:0; justify-content:center; } .vm-header{ padding:12px 14px; } .vm-title{ font-size:11px; letter-spacing:.12em; } }
 </style>
 </head>
 <body data-layout-hero="b" data-layout-story="b" data-layout-gallery="b"
@@ -6740,9 +6766,13 @@ h1:not(.jp), h2:not(.jp), h3:not(.jp), .display:not(.jp){ font-family:'Onest',sy
   <div class="vm-box">
     <div class="vm-header">
       <div class="vm-title"><span class="dot"></span> <span id="vm-title-text">Cinematic Video Showcase</span></div>
-      <button class="vm-close" onclick="closeVideoModal()" aria-label="Close video">✕</button>
+      <div class="vm-actions">
+        <button class="vm-share" id="vm-share" type="button" aria-label="Copy link to this reel"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" aria-hidden="true"><path d="M6.5 9.5 9.5 6.5M7 4.5l1.2-1.2a2.6 2.6 0 0 1 3.7 3.7L10.7 8.2M9 11.5l-1.2 1.2a2.6 2.6 0 0 1-3.7-3.7L5.3 7.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="vm-share-label">Copy link</span></button>
+        <button class="vm-close" onclick="closeVideoModal()" aria-label="Close video">✕</button>
+      </div>
     </div>
     <div class="vm-video-wrap">
+      <button class="vm-unmute" id="vm-unmute" type="button" hidden>🔊 Tap for sound</button>
       <video id="vm-video" controls playsinline preload="auto">
         <source src="/videos/hero-reel.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
@@ -6967,6 +6997,70 @@ window.handleContactSubmit = function(e) {
   v.addEventListener("pause", function() {
     setTimeout(resume, 400);
   });
+})();
+</script>
+<script>
+(function () {
+  var SITE_PATH = "/";
+  var current = null;
+  function idFromSrc(src) { var m = /\/videos\/work\/([a-z0-9-]+)\.mp4/.exec(src || ""); return m ? m[1] : null; }
+  function slugOf(id) { return id.replace(/-v\d+$/, ""); }
+  function cardFor(slug) {
+    var cards = document.querySelectorAll(".proj-card[onclick]");
+    for (var i = 0; i < cards.length; i++) {
+      var cid = idFromSrc(cards[i].getAttribute("onclick"));
+      if (cid && (cid === slug || slugOf(cid) === slug)) return { el: cards[i], id: cid };
+    }
+    return null;
+  }
+  function linkFor(id) { return location.origin + "/work/" + slugOf(id); }
+  function setPath(p) { try { if (location.pathname !== p) history.replaceState(null, "", p + location.search); } catch (e) {} }
+
+  var open = window.openVideoModal, close = window.closeVideoModal;
+  window.openVideoModal = function (src, title) {
+    current = idFromSrc(src);
+    open(src, title);
+    if (current) setPath("/work/" + slugOf(current));
+    var lab = document.getElementById("vm-share-label"), btn = document.getElementById("vm-share");
+    if (btn) { btn.classList.remove("copied"); btn.hidden = !current; }
+    if (lab) lab.textContent = "Copy link";
+  };
+  window.closeVideoModal = function () {
+    close();
+    current = null;
+    var u = document.getElementById("vm-unmute"); if (u) u.hidden = true;
+    setPath(SITE_PATH);
+  };
+
+  document.getElementById("vm-share").addEventListener("click", function () {
+    if (!current) return;
+    var url = linkFor(current), btn = this, lab = document.getElementById("vm-share-label");
+    var title = (document.getElementById("vm-title-text") || {}).textContent || "Reel";
+    function done() { btn.classList.add("copied"); lab.textContent = "Link copied"; setTimeout(function () { btn.classList.remove("copied"); lab.textContent = "Copy link"; }, 2200); }
+    if (navigator.share && matchMedia("(hover: none)").matches) {
+      navigator.share({ title: title + " — Sandeep Mamidala", url: url }).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(done, function () { prompt("Copy this link:", url); });
+    } else { prompt("Copy this link:", url); }
+  });
+
+  var unmute = document.getElementById("vm-unmute"), video = document.getElementById("vm-video");
+  unmute.addEventListener("click", function () { video.muted = false; video.play().catch(function () {}); unmute.hidden = true; });
+  video.addEventListener("volumechange", function () { if (!video.muted) unmute.hidden = true; });
+
+  var m = /^\/work\/([a-z0-9-]+)\/?$/.exec(location.pathname);
+  var id = m ? m[1] : null;
+  if (id) {
+    var hit = cardFor(id);
+    if (!hit) { setPath(SITE_PATH); return; }
+    var title = (hit.el.querySelector(".proj-title") || {}).textContent || "";
+    window.openVideoModal("/videos/work/" + hit.id + ".mp4", title);
+    video.play().catch(function () {
+      video.muted = true;
+      unmute.hidden = false;
+      video.play().catch(function () {});
+    });
+  }
 })();
 </script>
 </body>

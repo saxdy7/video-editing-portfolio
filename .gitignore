@@ -44,3 +44,6 @@ next-env.d.ts
 .dev/
 AGENTS.md
 CLAUDE.md
+
+# generated at build time by scripts/build-reel-pages.mjs
+/public/work/
